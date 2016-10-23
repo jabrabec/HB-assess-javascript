@@ -423,7 +423,37 @@
 
 <script>
   "use strict";
-  // put your code here
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
+  var randomNumber = getRandomInt(1, 100);
+
+  function startPlayingGame(){
+    var playing = true;
+
+    while (playing) {
+      var guessNumber = parseInt(window.prompt("Guess a number between 1-100: "));
+      if (guessNumber === null) {
+        playing = false;
+      }
+      else if (guessNumber === randomNumber) {
+        window.alert("You guessed correctly!");
+        playing = false;
+      }
+      else if (guessNumber > randomNumber) {
+        window.alert("You guessed too high!");
+      }
+      else if (guessNumber < randomNumber) {
+        window.alert("You guessed too low!");
+      }
+    }
+    alert("Thanks for playing!");
+  }
+
+  $('#play-guessing-game').on('click', startPlayingGame);
+
 </script>
 
 <div class="hint">
