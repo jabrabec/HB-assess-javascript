@@ -291,7 +291,18 @@
 
 <script>
   "use strict";
-  // put your code here
+  $('#kittenz-rule').on('dblclick', function (){
+    $('#kittenz-rule').attr('src','https://s-media-cache-ak0.pinimg.com/736x/3c/ac/d2/3cacd2b2071d3a9c094c6abaddcadb36.jpg');
+  });
+
+  // alternate function:
+
+  // function changeKittenPhoto(){
+  //   $('#kittenz-rule').attr('src','https://s-media-cache-ak0.pinimg.com/736x/3c/ac/d2/3cacd2b2071d3a9c094c6abaddcadb36.jpg');
+  // }
+
+  // $('#kittenz-rule').on('dblclick', changeKittenPhoto);
+
 </script>
 
 <div class="hint">
@@ -325,7 +336,14 @@
 
 <script>
   "use strict";
-  // put your code here
+  function showActuallyAHedgehogNotAPorcupine () {
+    $('#cute-porcupine-image').fadeIn(3000);
+  }
+
+  $('#make-a-porcupine').on('click', function() {
+    setTimeout(showActuallyAHedgehogNotAPorcupine, 1000)
+  });
+
 </script>
 
 <div class="hint">
