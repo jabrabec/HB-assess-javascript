@@ -98,7 +98,20 @@
 
 <script>
   "use strict";
-  // code here for above problem
+    var button = document.getElementById('popup-alert-button');
+
+  button.addEventListener('click', function () {
+      alert("I've shown you a pop-up!");
+    }
+  );
+
+  // alternate formatting:
+
+  // function alertPopupOnClick() {
+  //   alert("I've shown you a pop-up!");
+  // }
+
+  // button.addEventListener('click', alertPopupOnClick);
 </script>
 
 
@@ -117,7 +130,14 @@
 
 <script>
   "use strict";
-  // code here for above-problem
+  var textToChange = document.getElementById('message-to-change');
+  var button = document.getElementById('change-hello-to-goodbye-button');
+
+  button.addEventListener('click', function() {
+    textToChange.innerHTML = 'goodbye';
+  }
+  );
+
 </script>
 
 <div class="hint">
@@ -147,7 +167,15 @@
 
 <script>
   "use strict";
-  // code here for above problem
+  var button = document.getElementById('prevent-form-submission-button');
+
+  function preventSubmitAlertInstead(evt) {
+    evt.preventDefault();
+    alert('NOPE! No submitting!');
+  }
+
+  button.addEventListener('click', preventSubmitAlertInstead);
+
 </script>
 
 <div class="hint">
@@ -178,23 +206,28 @@
 
 <script>
   "use strict";
+  function reverseString() {
+    var msg = "Porcupines are cute";
+    var characters = msg.split("");
+    var newMsg = "";
 
-//  Here's a stub of a function you can use!
+    for(var i = characters.length - 1; i >= 0; i--) {
+      newMsg += msg[i];
+    }
+    alert(newMsg);
+    }
 
-//  function reverseString() {
-//    var msg = "Porcupines are cute";
-//
-//    // do some stuff here to reverse that string into a new variable
-//    var newMsg = "This should be the reversed string";
-//
-//    alert(newMsg);
-//  }
+// alternate function:
+  // function reverseString() {
+  //   var msg = "Porcupines are cute";
+  //   var characters = msg.split("");
+  //   var reverseArray = characters.reverse();
+  //   var newMsg = reverseArray.join("");
+  //   alert(newMsg);
+  //   }
 
-// Here's a stub of event stuff you could use
-//
-
-//  var button = document.getElementById('reverse-string-button');
-//  button.addEventListener('click', reverseString);
+  var button = document.getElementById('reverse-string-button');
+  button.addEventListener('click', reverseString);
 </script>
 
 
