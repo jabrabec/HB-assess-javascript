@@ -425,6 +425,7 @@
   "use strict";
 
   function startPlayingGame(){
+    // set a new random number to be guessed each time game is played
     function getRandomInt(min, max) {
       min = Math.ceil(min);
       max = Math.floor(max);
@@ -432,17 +433,28 @@
     }
     var randomNumber = getRandomInt(1, 100);
     
+    // set playing variable to true to keep play state active until
+    // game is over
     var playing = true;
 
+    // until game is done, continue the following loop
     while (playing) {
+      // prompt user for guess; guessNumber is by default a string
       var guessNumber = window.prompt("Guess a number between 1-100: ");
+      // allow user to quit guessing & quit game at any time if 
+      // 'cancel' is pressed at guessNumber prompt
       if (guessNumber === null) {
         playing = false;
       }
+      // end game once number is guessed correctly; turn guess into
+      // integer for strict equality comparison to randomNumber
       else if (parseInt(guessNumber) === randomNumber) {
         window.alert("You guessed correctly!");
         playing = false;
       }
+      // > and < operators would work without parseInt, but that is
+      // included here as good practice. Value of 'playing' does not
+      // change here so the game will continue.
       else if (parseInt(guessNumber) > randomNumber) {
         window.alert("You guessed too high!");
       }
@@ -450,9 +462,12 @@
         window.alert("You guessed too low!");
       }
     }
+    // thank user for playing once game is over (regardless of how
+    // user got here)
     alert("Thanks for playing!");
   }
 
+  // start playing game when "Play!" button is clicked
   $('#play-guessing-game').on('click', startPlayingGame);
 
 </script>
