@@ -217,7 +217,8 @@
     alert(newMsg);
     }
 
-// alternate function:
+  // alternate function:
+
   // function reverseString() {
   //   var msg = "Porcupines are cute";
   //   var characters = msg.split("");
@@ -606,9 +607,62 @@
 <script>
   "use strict";
 
-    var PRIME_COLORS = ['orange', 'midnightblue', 'darkgoldenrod', 'green', 'purple'];
+  var PRIME_COLORS = ['orange', 'midnightblue', 'darkgoldenrod', 'green', 'purple'];
 
-  // put the rest of your code here
+  /* I found this function online and it works. I only tweaked it
+  slightly. It creates an empty array and fills it until its length
+  matches that passed as n into the function. It starts at integer=2
+  since 1 is not a prime number. It then iterates over integers > 2,
+  incrementing them by 1 with each iteration. Each iteration evaluates
+  whether the integer at i is divisible by any intervening integers
+  between 2 and itself; if so, it fails fast and breaks to move on to
+  the next integer. If it evaluates all intervening integers after 2
+  until reaching the integer at i and finds none result in 
+  modulus = 0, that integer is added to the prime number array. There
+  is probably a faster way to calculate primes but for short lists
+  this is fine.*/
+  function primeNumbers(n) {
+    var arrayOfPrimes = [];
+    for (var i = 2; arrayOfPrimes.length < n; i++) {
+      var divisorFound = false;
+      for (var count = 2; count < i; count++) {
+        if (i % count === 0) {
+          divisorFound = true;
+          break;
+        }
+      }
+      if (divisorFound == false) {
+        arrayOfPrimes.push(i);
+      }
+    }
+    return arrayOfPrimes;
+  }
+  // create an array of desired length n to hold calculated primes
+  var primeNumberArray = primeNumbers(5);
+
+  // function is called when button is pushed
+  function makePrimeBoxes() {
+    // empty divContents array is initialized
+    var divContents = []
+    // iterate over indices in primeNumberArray
+    for (var i in primeNumberArray) {
+      // create a temporary holding string to concatenate html
+      // div coding plus colors and numbers at index i are combined 
+      var tempString = '<div class="prime-box" style="background-color:' + PRIME_COLORS[i] + '">' + primeNumberArray[i] + '</div>';
+      // append tempString to divContents for generating final html.
+      // number of array elements will match length of calculated prime
+      // array.
+      divContents.push(tempString);
+    }
+    // contents of div id 'prime-box-area' are updated with full array.
+    // number of boxes on page will match number of array elements in
+    // divContents.
+    $('#prime-box-area').html(divContents);
+  }
+
+  // event handler to create prime boxes when button is pushed
+  $('#make-prime-boxes').on('click', makePrimeBoxes);
+
 </script>
 
 
