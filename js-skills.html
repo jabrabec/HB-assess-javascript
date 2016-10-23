@@ -98,9 +98,9 @@
 
 <script>
   "use strict";
-    var button = document.getElementById('popup-alert-button');
+    var button1 = document.getElementById('popup-alert-button');
 
-  button.addEventListener('click', function () {
+  button1.addEventListener('click', function () {
       alert("I've shown you a pop-up!");
     }
   );
@@ -111,7 +111,7 @@
   //   alert("I've shown you a pop-up!");
   // }
 
-  // button.addEventListener('click', alertPopupOnClick);
+  // button1.addEventListener('click', alertPopupOnClick);
 </script>
 
 
@@ -131,9 +131,9 @@
 <script>
   "use strict";
   var textToChange = document.getElementById('message-to-change');
-  var button = document.getElementById('change-hello-to-goodbye-button');
+  var button2 = document.getElementById('change-hello-to-goodbye-button');
 
-  button.addEventListener('click', function() {
+  button2.addEventListener('click', function() {
     textToChange.innerHTML = 'goodbye';
   }
   );
@@ -167,14 +167,14 @@
 
 <script>
   "use strict";
-  var button = document.getElementById('prevent-form-submission-button');
+  var button3 = document.getElementById('prevent-form-submission-button');
 
   function preventSubmitAlertInstead(evt) {
     evt.preventDefault();
     alert('NOPE! No submitting!');
   }
 
-  button.addEventListener('click', preventSubmitAlertInstead);
+  button3.addEventListener('click', preventSubmitAlertInstead);
 
 </script>
 
@@ -226,8 +226,8 @@
   //   alert(newMsg);
   //   }
 
-  var button = document.getElementById('reverse-string-button');
-  button.addEventListener('click', reverseString);
+  var button4 = document.getElementById('reverse-string-button');
+  button4.addEventListener('click', reverseString);
 </script>
 
 
@@ -239,7 +239,7 @@
 <p>You should use jQuery for these parts.</p>
 <p>We didn't include jQuery in this document, though&mdash;so your first task is to include it!</p>
 
-
+<script src="https://code.jquery.com/jquery.js"></script>
 
 <h3>Finding the Button</h3>
 <p>
@@ -252,7 +252,18 @@
 
 <script>
   "use strict";
-  // code here for above problem
+  $('.tricky-to-find').on('click', function (){
+      alert("Here's another alert box.");
+    }
+  );
+
+  // alternate function:
+  
+  // function newPopUpAlert(){
+  //   alert("Here's another alert box.");
+  // }
+
+  // $('.tricky-to-find').on('click', newPopUpAlert);
 </script>
 
 <div class="hint">
