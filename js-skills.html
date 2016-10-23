@@ -513,7 +513,16 @@
 
 <script>
   "use strict";
+  // initial declaration & definition of newRandomNumber as global
+  // variable outside of functions; otherwise, inner playGuessingGame
+  // function had some really weird scoping behavior and was keeping all
+  // previous newRandomNumber values in memory and only comparing input
+  // guess number to the first instance - but newRandomNumber is not an
+  // array and cannot be accessed like one
+  var newRandomNumber = 0;
 
+  // on click of "play" button, enable/disable fields appropriately
+  // and generate newRandomNumber for comparing guesses
   function startGuessingGame() {
     $('#play-guessing-game-2').prop('disabled', true);
     $('#number-guessed').prop('disabled', false);
@@ -524,15 +533,23 @@
       max = Math.floor(max);
       return Math.floor(Math.random() * (max - min)) + min;
     }
-    var newRandomNumber = getNewRandomInt(1, 100);
+    newRandomNumber = getNewRandomInt(1, 100);
+    console.log("before clicking guess, newRandomNumber is " + newRandomNumber);
 
-    $('#try-this-number').on('click', playGuessingGame);
-    
+    // on click of 'guess', prevent default form submission route,
+    // assign input guess to variable, compare that guess to current
+    // random number
     function playGuessingGame (evt){
+      // the function is doing some weird stuff in memory here (check
+      // the console.log output) that I don't know how to fix; the
+      // function works as desired on the client-side as desired, though
+      console.log("after clicking guess, newRandomNumber is " + newRandomNumber);
       evt.preventDefault();
 
       var inputNumber = $('#number-guessed').val()
       
+      // if guess is correct, reset enabled/disabled fields and display
+      // correct guess text. reset text input field for UX
       if (parseInt(inputNumber) === newRandomNumber) {
         $('#number-guessing-msg').html(inputNumber + " is correct!");
         $('#play-guessing-game-2').prop('disabled', false);
@@ -540,17 +557,23 @@
         $('#number-guessed').val('');
         $('#try-this-number').prop('disabled', true);
       }
+      // if guess is incorrect, display appropriate guess text.
+      // reset text input field for UX
       else if (parseInt(inputNumber) > newRandomNumber) {
         $('#number-guessing-msg').html(inputNumber + " is too high!");
         $('#number-guessed').val('');
       }
       else if (parseInt(inputNumber) < newRandomNumber) {
-        $('#number-guessing-msg').html(inputNumber + " is too low");
+        $('#number-guessing-msg').html(inputNumber + " is too low!");
         $('#number-guessed').val('');
       }
     }
+
+    // event handler for 'guess' submit button
+    $('#try-this-number').on('click', playGuessingGame);
   }
 
+  // event handler for 'play' button
   $('#play-guessing-game-2').on('click', startGuessingGame);
 
 </script>
