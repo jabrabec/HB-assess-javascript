@@ -434,18 +434,18 @@
     var playing = true;
 
     while (playing) {
-      var guessNumber = parseInt(window.prompt("Guess a number between 1-100: "));
+      var guessNumber = window.prompt("Guess a number between 1-100: ");
       if (guessNumber === null) {
         playing = false;
       }
-      else if (guessNumber === randomNumber) {
+      else if (parseInt(guessNumber) === randomNumber) {
         window.alert("You guessed correctly!");
         playing = false;
       }
-      else if (guessNumber > randomNumber) {
+      else if (parseInt(guessNumber) > randomNumber) {
         window.alert("You guessed too high!");
       }
-      else if (guessNumber < randomNumber) {
+      else if (parseInt(guessNumber) < randomNumber) {
         window.alert("You guessed too low!");
       }
     }
