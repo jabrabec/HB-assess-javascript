@@ -387,7 +387,10 @@
 
 <script>
   "use strict";
-  function agreeWithFoodChoice() {
+  function agreeWithFoodChoice(evt) {
+    // interestingly, firefox doesn't need the  preventDefault line
+    // here but chrome does
+    evt.preventDefault();
     var userFood = $('#favorite-food-input').val();
     $('#agreeable-text').html("I like " + userFood + ", too.");
   }
@@ -530,7 +533,7 @@
 
     function playGuessingGame (evt){
       evt.preventDefault();
-      
+
     }
   
   $('#try-this-number').on('click', playGuessingGame);
