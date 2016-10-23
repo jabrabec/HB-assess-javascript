@@ -387,7 +387,13 @@
 
 <script>
   "use strict";
-  // put your code here
+  function agreeWithFoodChoice() {
+    var userFood = $('#favorite-food-input').val();
+    $('#agreeable-text').html("I like " + userFood + ", too.");
+  }
+
+  $('#agreeable-form').on('submit', agreeWithFoodChoice);
+
 </script>
 
 <div class="hint">
