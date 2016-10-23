@@ -516,11 +516,11 @@
 
   function startGuessingGame() {
     $('#play-guessing-game-2').prop('disabled', true);
-    console.log('play button disabled');
+    // console.log('play button disabled');
     $('#number-guessed').prop('disabled', false);
-    console.log('guess button enabled');
+    // console.log('guess button enabled');
     $('#try-this-number').prop('disabled', false);
-    console.log('number field enabled');
+    // console.log('number field enabled');
     // set a new random number each time game is played
     function getNewRandomInt(min, max) {
       min = Math.ceil(min);
@@ -528,24 +528,39 @@
       return Math.floor(Math.random() * (max - min)) + min;
     }
     var newRandomNumber = getNewRandomInt(1, 100);
-    console.log(newRandomNumber);
+    console.log("random number: " + newRandomNumber);
 
-
+    $('#try-this-number').on('click', playGuessingGame);
+    
     function playGuessingGame (evt){
       evt.preventDefault();
 
+      var inputNumber = $('#number-guessed').val()
+      console.log("number guessed: " + inputNumber);
+      
+      if (parseInt(inputNumber) === newRandomNumber) {
+        console.log("number guessed correctly");
+        $('#number-guessing-msg').html("Correct!");
+        $('#play-guessing-game-2').prop('disabled', false);
+        console.log('play button enabled');
+        $('#number-guessed').prop('disabled', true);
+        console.log('guess button disable');
+        $('#try-this-number').prop('disabled', true);
+        console.log('number field disabled');
+      }
+      else if (parseInt(inputNumber) > newRandomNumber) {
+        console.log("number guessed too high");
+        $('#number-guessing-msg').html("Too high!");
+      }
+      else if (parseInt(inputNumber) < newRandomNumber) {
+        console.log("number guessed too low");
+        $('#number-guessing-msg').html("Too low");
+      }
     }
-  
-  $('#try-this-number').on('click', playGuessingGame);
 
   }
 
-
-  
   $('#play-guessing-game-2').on('click', startGuessingGame);
-
-
-
 
 </script>
 
